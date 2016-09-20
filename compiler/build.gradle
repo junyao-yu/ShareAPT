@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':annotation')
+    compile 'com.squareup:javapoet:1.7.0'//这个库的主要作用就是帮助我们通过类调用的形式来生成代码
+    compile 'com.google.auto.service:auto-service:1.0-rc2'//AutoService 主要的作用是注解 processor 类，并对其生成 META-INF 的配置信息
+}
+targetCompatibility = '1.7'
+sourceCompatibility = '1.7'
+
+task clean(type: Exec) {
+    ext.lockhunter = '\"G:\\LockHunter.exe\"'
+    def buildDir = file(new File("build"))
+    commandLine 'cmd', "$lockhunter", '/delete', '/silent', buildDir
+}
